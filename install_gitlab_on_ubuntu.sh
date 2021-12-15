@@ -8,3 +8,4 @@ $ sudo su -
 $ sudo -e /etc/gitlab/gitlab.rb
 // find external_url and change the port 80 -> 88
 $ sudo gitlab-ctl reconfigure
+$ sudo gitlab-ctl start/stop/restart
