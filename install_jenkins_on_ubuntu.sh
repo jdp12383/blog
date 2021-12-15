@@ -10,3 +10,6 @@ $ sudo su -
 // enter copied password
 // select auto-selected plugins
 // create user
+// stop jenkins
+// http://localhost:8080/exit
+$ sudo service jenkins start/stop/restart
