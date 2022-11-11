@@ -1,0 +1,104 @@
+https://developer.android.com/ndk/guides/standalone_toolchain
+
+Download Android NDK from https://developer.android.com/ndk/downloads
+
+user@ubuntu:/tmp/ndk$ ll
+total 518504
+drwxrwxr-x  2 user user      4096 Nov  9 16:22 ./
+drwxrwxrwt 27 root root      4096 Nov  9 16:11 ../
+-rw-rw-r--  1 user user 530938532 Nov  9 16:22 android-ndk-r25-linux.zip
+
+
+Extract the NDK
+
+user@ubuntu:/tmp/ndk$ unzip android-ndk-r25-linux.zip
+  ...
+  android-ndk-r25/toolchains/llvm/prebuilt/linux-x86_64/lib64/libxml2.so -> libxml2.so.2.9.13
+  android-ndk-r25/toolchains/llvm/prebuilt/linux-x86_64/lib64/liblldb.so -> liblldb.so.14git
+  android-ndk-r25/shader-tools/linux-x86_64/libc++.so.1 -> ../../toolchains/llvm/prebuilt/linux-x86_64/lib64/libc++.so.1
+user@ubuntu:/tmp/ndk$ ll
+total 518508
+drwxrwxr-x  3 user user      4096 Nov  9 16:23 ./
+drwxrwxrwt 27 root root      4096 Nov  9 16:11 ../
+drwxr-xr-x 11 user user      4096 Jun 27 20:33 android-ndk-r25/
+-rw-rw-r--  1 user user 530938532 Nov  9 16:22 android-ndk-r25-linux.zip
+user@ubuntu:/tmp/ndk$ cd android-ndk-r25/
+user@ubuntu:/tmp/ndk/android-ndk-r25$ 
+
+Make GNU Android Toolchain from NDK
+
+user@ubuntu:/tmp/ndk/android-ndk-r25$ ./build/tools/make_standalone_toolchain.py --arch arm64 --api 29
+WARNING:__main__:make_standalone_toolchain.py is no longer necessary. The
+$NDK/toolchains/llvm/prebuilt/linux-x86_64/bin directory contains target-specific scripts that perform
+the same task. For example, instead of:
+
+    $ python $NDK/build/tools/make_standalone_toolchain.py \
+        --arch arm64 --api 29 --install-dir toolchain
+    $ toolchain/bin/clang++ src.cpp
+
+Instead use:
+
+    $ $NDK/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ src.cpp
+
+user@ubuntu:/tmp/ndk/android-ndk-r25$ ll
+total 789300
+drwxr-xr-x 11 user user      4096 Nov  9 16:43 ./
+drwxrwxr-x  3 user user      4096 Nov  9 16:23 ../
+-rw-rw-r--  1 user user 806762846 Nov  9 16:47 aarch64-linux-android.tar.bz2
+drwxr-xr-x  6 user user      4096 Jun 27 20:22 build/
+-rw-r--r--  1 user user      4529 Jun 27 20:22 CHANGELOG.md
+drwxr-xr-x  2 user user      4096 Jun 27 20:29 meta/
+-rwxr-xr-x  1 user user        73 Jun 27 20:29 ndk-build*
+-rwxr-xr-x  1 user user        91 Jun 27 20:29 ndk-gdb*
+-rwxr-xr-x  1 user user        91 Jun 27 20:29 ndk-lldb*
+-rwxr-xr-x  1 user user        93 Jun 27 20:29 ndk-stack*
+-rwxr-xr-x  1 user user        93 Jun 27 20:29 ndk-which*
+-rw-r--r--  1 user user    549941 Jun 27 20:33 NOTICE
+-rw-r--r--  1 user user    838487 Jun 27 20:33 NOTICE.toolchain
+drwxr-xr-x  3 user user      4096 Jun 27 20:29 prebuilt/
+drwxr-xr-x  5 user user      4096 Jun 27 20:33 python-packages/
+-rw-r--r--  1 user user       730 Jun 27 20:22 README.md
+drwxr-xr-x  3 user user      4096 Jun 27 20:33 shader-tools/
+drwxr-xr-x  7 user user      4096 Jun 27 20:29 simpleperf/
+-rw-r--r--  1 user user        51 Jun 27 20:29 source.properties
+drwxr-xr-x  5 user user      4096 Jun 27 20:29 sources/
+drwxr-xr-x  3 user user      4096 Jun 27 20:29 toolchains/
+drwxr-xr-x  2 user user      4096 Jun 27 20:22 wrap.sh/
+user@ubuntu:/tmp/ndk/android-ndk-r25$
+
+
+Copy generated tar.bz2 to your desired location and remove the NDK
+
+user@ubuntu:/tmp/ndk$ ll
+total 1306368
+drwxrwxr-x  3 user user      4096 Nov  9 16:49 ./
+drwxrwxrwt 27 root root      4096 Nov  9 16:47 ../
+-rw-rw-r--  1 user user 806762846 Nov  9 16:47 aarch64-linux-android.tar.bz2
+drwxr-xr-x 11 user user      4096 Nov  9 16:49 android-ndk-r25/
+-rw-rw-r--  1 user user 530938532 Nov  9 16:22 android-ndk-r25-linux.zip
+user@ubuntu:/tmp/ndk$ rm -rf android-ndk-r25/ android-ndk-r25-linux.zip
+user@ubuntu:/tmp/ndk$ ll
+total 787868
+drwxrwxr-x  2 user user      4096 Nov  9 16:50 ./
+drwxrwxrwt 27 root root      4096 Nov  9 16:47 ../
+-rw-rw-r--  1 user user 806762846 Nov  9 16:47 aarch64-linux-android.tar.bz2
+user@ubuntu:/tmp/ndk$
+
+Extract the generated tar.bz2
+
+user@ubuntu:/tmp/ndk$ tar -xf aarch64-linux-android.tar.bz2
+user@ubuntu:/tmp/ndk$ ll
+total 787872
+drwxrwxr-x  3 user user      4096 Nov  9 16:51 ./
+drwxrwxrwt 27 root root      4096 Nov  9 16:50 ../
+drwxr-xr-x 11 user user      4096 Jun 27 20:29 aarch64-linux-android/
+-rw-rw-r--  1 user user 806762846 Nov  9 16:47 aarch64-linux-android.tar.bz2
+
+user@ubuntu:/tmp/ndk$ ls aarch64-linux-android/bin/aarch64-linux-android29-*
+aarch64-linux-android/bin/aarch64-linux-android29-ar       aarch64-linux-android/bin/aarch64-linux-android29-g++  aarch64-linux-android/bin/aarch64-linux-android29-objcopy
+aarch64-linux-android/bin/aarch64-linux-android29-as       aarch64-linux-android/bin/aarch64-linux-android29-gcc  aarch64-linux-android/bin/aarch64-linux-android29-objdump
+aarch64-linux-android/bin/aarch64-linux-android29-clang    aarch64-linux-android/bin/aarch64-linux-android29-ld   aarch64-linux-android/bin/aarch64-linux-android29-strip
+aarch64-linux-android/bin/aarch64-linux-android29-clang++  aarch64-linux-android/bin/aarch64-linux-android29-nm
+user@ubuntu:/tmp/ndk$ 
+
+
