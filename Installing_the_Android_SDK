@@ -1,0 +1,27 @@
+Installing the Android SDK (Linux)
+
+You will need to download the Android SDK without Android Studio bundled. 
+Go to http://developer.android.com/sdk/index.html and navigate to the SDK Tools Only section. 
+Copy the URL for the download that's appropriate for your build machine OS.
+
+    commandlinetools-linux-8512546_latest.zip
+
+Unzip and place the contents within your home directory.
+
+    unzip commandlinetools-linux-8512546_latest.zip
+    mkdir /bulk/share/android-sdk
+    mv cmdline-tools /bulk/share/android-sdk/
+
+Run the sdkmanager tool:
+    cd /bulk/share/android-sdk/cmdline-tools/bin
+    sudo ./sdkmanager --update --sdk_root=/bulk/share/android-sdk/
+    sudo ./sdkmanager "platforms;android-29" "build-tools;29.0.3" "extras;google;m2repository" "extras;android;m2repository" --sdk_root=/bulk/share/android-sdk/
+    sudo ./sdkmanager --licenses --sdk_root=/bulk/share/android-sdk/
+
+Edit your .bash_profile file.
+    # Android 
+    export ANDROID_SDK_ROOT=/bulk/share/android-sdk
+    export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools
+	
+Save and quit. Reload .bash_profile:
+    source ~/.bash_profile
