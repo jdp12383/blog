@@ -1,0 +1,31 @@
+1. Setup
+	a. Android StudioAndroid Studio Chipmunk | 2021.2.1 Patch 1
+	   Build #AI-212.5712.43.2112.8609683, built on May 18, 2022
+
+	b. Download latest pre-built GStreamer library from following URL: https://gstreamer.freedesktop.org/data/pkg/android/1.20.2/gstreamer-1.0-android-universal-1.20.2.tar.xz
+	
+	c. Extract compressed file to local path: C:\Tools\GStreamer\1.20.2 with sub-folders for each architecture i.e. arm64, x86, x86_64, armv7
+	
+	d. Using SDK Manager download,
+		  i. SDKs: 23, 29, 32 at C:\Tools\Android\sdk\platforms\android-23/29/32
+		 ii. NDK at C:\Tools\Android\sdk\ndk\21.4.7075529
+		iii. build-tools at C:\Tools\Android\sdk\build-tools\25.0.3/27.0.3/30.0.3
+		
+	e. Download/extract JDK 1.8 at C:\Tools\Java\jdk1.8.0_202
+	
+	f. Download and install cygwin64 at C:\Tools\cygwin64 AND install required cygwin packages
+	
+	g. Enable Hyper-V from Windows Features by searching Hyper-V in windows taskbar search
+	
+	h. Create Pixel_3a_API_29 AVD in Android Studio Device Manager
+
+2. Create following environment variables
+	a. ANDROID_HOME           - C:\Tools\Android\sdk
+	b. ANDROID_NDK_HOME       - C:\Tools\Android\sdk\ndk\21.4.7075529
+	c. GSTREAMER_ROOT_ANDROID - C:\Tools\GStreamer\1.20.2
+	d. JAVA_HOME              - C:\Tools\Java\jdk1.8.0_202
+	d. PATH                   - C:\Tools\cygwin64\bin;C:\Tools\Android\sdk\tools;C:\Tools\Android\sdk\platform-tools;C:\Tools\Android\sdk\ndk\21.4.7075529;C:\Tools\Android\sdk\ndk\21.4.7075529\build
+	
+3. Clone repository - https://github.com/GStreamer/gst-docs
+
+4. Open exported directory project "android" from Android Studio - https://github.com/GStreamer/gst-docs/tree/master/examples/tutorials/android
