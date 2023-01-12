@@ -1,0 +1,17 @@
+git clone git://git.netfilter.org/libmnl
+cd libmnl
+./autogen.sh
+./configure --host=aarch64-linux-android CC=aarch64-linux-android29-gcc LDFLAGS=-static --prefix=$PWD
+make clean
+make
+sudo make install
+
+git clone git://git.kernel.org/pub/scm/network/ethtool/ethtool.git
+#export PATH=/.../gcc-linaro-arm-linux-gnueabihf-4.8/bin/:$PATH
+cd ethtool
+./autogen.sh
+#./configure --host=aarch64-linux-android --prefix=$PWD CC=aarch64-linux-android29-gcc LDFLAGS=-static STRIP=aarch64-linux-android29-strip  MNL_CFLAGS="-I$LIBMNL_PWD/include" MNL_LIBS="-L$LIBMNL_PWD/lib -lmnl" LDFLAGS=-static
+./configure --host=aarch64-linux-android --prefix=$PWD CC=aarch64-linux-android29-gcc LDFLAGS=-static STRIP=aarch64-linux-android29-strip  MNL_CFLAGS="-I../libmnl/include" MNL_LIBS="-L../libmnl/lib -lmnl" LDFLAGS=-static
+make clean
+make
+sudo make install
